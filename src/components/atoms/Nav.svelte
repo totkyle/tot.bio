@@ -20,7 +20,7 @@
 <li class:selected={isSelected}>
 	<button on:click={handleClick}>
 		<div class="icon-container">
-			<slot/>
+			<img src="icons/{section === '/' ? 'home' : section}.svg" alt={section} />
 		</div>
 		<h5>
 			{section}
@@ -37,7 +37,7 @@
 	button {
 		background-color: transparent;
 		border: none;
-		color: var(--text-secondary);
+		color: var(--white-two);
 		font-size: 1.1rem;
 		user-select: none;
 		display: flex;
@@ -47,11 +47,12 @@
 		border-radius: 100px;
 		cursor: pointer;
 		transition: background-color 0.3s var(--bezier-one), transform 0.3s var(--bezier-one);
-
+		
 		&:hover {
-			background-color: var(--elevation-four);
+			background-color: var(--neutral-four);
 		}
 	}
+
 
 	h5 {
 		transition: all 0.3s var(--bezier-one);
@@ -62,17 +63,37 @@
 	}
 
 	button:hover > h5,
+	.selected img,
 	.selected h5 {
-		color: var(--text-primary);
+		color: var(--white);
 		opacity: 1;
 	}
 
+	img {
+		display: flex;
+		align-items: center;
+		justify-self: center;
+		opacity: 0.5;
+		height: 24px;
+		width: 24px;
+		transition: all 0.5s var(--bezier-one);
+	}
 
 	h5 {
 		opacity: 0.8;
 	}
 
+	button:active img,
+	button:hover img {
+		opacity: 1;
+	}
+
 	@media screen and (max-width: 868px) {
+		img {
+			transform: scale(0.95);
+			margin-right: 0;
+			transition-delay: 0.3s;
+		}
 
 		h5 {
 			transition-delay: 0.5s;
@@ -100,7 +121,7 @@
 
 		button:hover .icon-container,
 		.selected .icon-container {
-			background-color: var(--accent-opacity);
+			background-color: var(--yellow-opacity);
 		}
 	}
 </style>

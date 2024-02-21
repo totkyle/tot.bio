@@ -2,6 +2,7 @@
 	export let side = false;
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <button on:click on:keypress class:button-with-side={side}>
 	<div class:side />
 	<slot />
@@ -17,17 +18,17 @@
 		flex-direction: row;
 		width: max-content;
 		cursor: pointer;
-		background-color: var(--elevation-one);
+		background-color: var(--neutral-one);
 		transition: filter 0.2s var(--bezier-one), transform 0.5s var(--bezier-one);
 		user-select: none;
 		margin: 0;
 		padding: 1rem 2rem;
-		color: var(--accent);
+		color: var(--yellow);
 		font-weight: 300;
 		font-size: 1.6rem;
 		font-family: var(--font-two);
 		letter-spacing: -0.075em;
-		border: 1px solid var(--elevation-four);
+		border: 1px solid var(--neutral-four);
 
 		&:active {
 			transform: scale(95%);
@@ -58,7 +59,7 @@
 		content: '';
 		height: 100%;
 		width: 1.6rem;
-		background-color: var(--accent);
+		background-color: var(--yellow);
 
 		@media screen and (max-width: 868px) {
 			display: none;

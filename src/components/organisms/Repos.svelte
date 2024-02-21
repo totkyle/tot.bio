@@ -2,23 +2,11 @@
 	import { onMount } from 'svelte';
 	import type { Repo } from '../../util/types';
 
-	import { StarIcon } from '@indaco/svelte-iconoir/star';
-	import { GitForkIcon } from '@indaco/svelte-iconoir/git-fork';
-	import { OpenNewWindowIcon } from '@indaco/svelte-iconoir/open-new-window';
-
 	let repos: Repo[];
 
 	onMount(async () => {
-		const response = await fetch('https://gh-pinned-repos-tsj7ta5xfhep.deno.dev/?username=xafn');
-		let unpatched = await response.json();
-		// patch repo owners having a slash at the end of them
-		for (let i = 0; i < unpatched.length; i++) {
-			const element = unpatched[i];
-			if ((element.owner as string).endsWith('/')) {
-				unpatched[i].owner = unpatched[i].owner.slice(0, -1);
-			}
-		}
-		repos = unpatched;
+		const response = await fetch('https://gh-pinned-repos.egoist.dev/?username=totkyle');
+		repos = await response.json();
 	});
 </script>
 
@@ -40,8 +28,8 @@
 								/>
 								<h6>{owner}</h6>
 							</div>
-							<div id="open">
-								<OpenNewWindowIcon color="var(--text-secondary)" size="20px" />
+							<div>
+								<img src="icons/open.svg" alt="open in new tab" id="open" />
 							</div>
 						</div>
 						<div>
@@ -55,13 +43,13 @@
 							</div>
 							<div class="info">
 								{#if stars}
-									<StarIcon color="var(--text-secondary)" size="16px" />
+									<img src="icons/star.svg" id="star" alt="star" />
 									<h6>{stars}</h6>
 								{/if}
 							</div>
 							<div class="info">
 								{#if forks}
-									<GitForkIcon color="var(--text-secondary)" size="16px" />
+									<img src="icons/fork.svg" id="fork" alt="fork" />
 									<h6>{forks}</h6>
 								{/if}
 							</div>
@@ -70,9 +58,10 @@
 				</a>
 			{/each}
 		{:else}
-			{#each Array(4) as _}
-				<div class="repo-card shimmer" />
-			{/each}
+			<div class="repo-card shimmer" />
+			<div class="repo-card shimmer" />
+			<div class="repo-card shimmer" />
+			<div class="repo-card shimmer" />
 		{/if}
 	</div>
 </section>
@@ -91,7 +80,7 @@
 	}
 	.repo-card {
 		padding: 1rem 1.25rem;
-		background-color: var(--elevation-two);
+		background-color: var(--neutral-two);
 		border-radius: 8px;
 		min-height: 140px;
 		height: 100%;
@@ -103,7 +92,7 @@
 		backdrop-filter: blur(5px);
 		-webkit-backdrop-filter: blur(5px);
 		background-blend-mode: overlay;
-		border: 1px solid var(--elevation-four);
+		border: 1px solid var(--neutral-four);
 
 		&:hover {
 			transform: translateY(-2px);
@@ -124,9 +113,9 @@
 		background: #ddd;
 		background: linear-gradient(
 			to right,
-			var(--elevation-two) 8%,
-			var(--elevation-one) 18%,
-			var(--elevation-two) 33%
+			var(--neutral-two) 8%,
+			var(--neutral-one) 18%,
+			var(--neutral-two) 33%
 		);
 		background-size: 1200px 100%;
 	}
@@ -142,14 +131,27 @@
 
 	a {
 		text-decoration: none;
-		color: var(--text-primary);
+		color: var(--white);
 		height: 100%;
 		border-radius: 8px;
+	}
+
+	img {
+		height: 16px;
+		width: auto;
 	}
 
 	h2 {
 		display: inline-block;
 		margin-bottom: 1rem;
+	}
+
+	#star {
+		transform: translateY(-1px);
+	}
+
+	#fork {
+		height: 17px;
 	}
 
 	#pfp {
@@ -168,7 +170,7 @@
 	}
 
 	span {
-		color: var(--accent);
+		color: var(--yellow);
 	}
 
 	.grid {

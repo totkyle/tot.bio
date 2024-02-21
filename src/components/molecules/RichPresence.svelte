@@ -27,7 +27,7 @@
 	};
 
 	function localTime() {
-		state = new Date().toLocaleTimeString('en-US', { timeZone: 'America/New_York' });
+		state = new Date().toLocaleTimeString('en-US', { timeZone: 'Turkey' });
 	}
 
 	function musicProgress(spotify: Spotify) {
@@ -52,7 +52,7 @@
 	onMount(() => {
 		function connect() {
 			clearInterval(currentSetInterval); // don't need this anymore
-			let lanyard: WebSocket = new WebSocket('wss://api.lanyard.rest/socket');
+			let lanyard: WebSocket = new WebSocket('wss://tot.moli.lat/socket');
 			lanyard.onopen = () => console.log('Synced with Discord rich presence!');
 
 			lanyard.onmessage = (e) => {
@@ -118,10 +118,7 @@
 							? `https://cdn.discordapp.com/app-assets/${data.activities[activityNumber].application_id}/${data.activities[activityNumber].assets.large_image}.webp?size=512`
 							: images[activity] || 'question_mark.png';
 						smallImage = '';
-						if (
-							data.activities[activityNumber].assets &&
-							data.activities[activityNumber].assets.small_image
-						) {
+						if (data.activities[activityNumber].assets && data.activities[activityNumber].assets.small_image) {
 							smallImage = `https://cdn.discordapp.com/app-assets/${data.activities[activityNumber].application_id}/${data.activities[activityNumber].assets.small_image}.webp?size=512`;
 						}
 						cancelAnimationFrame(currentRequestAnimationFrame);
@@ -194,7 +191,7 @@
 	}
 
 	a:hover {
-		text-decoration-color: var(--text-primary);
+		text-decoration-color: var(--white);
 	}
 
 	.big {
@@ -224,23 +221,23 @@
 		border-radius: 10rem;
 		margin: 0;
 		margin-top: 0.6rem;
-		background-color: var(--elevation-one);
+		background-color: var(--neutral-one);
 		height: 0.6rem;
 		overflow: hidden;
 
 		&::-webkit-progress-bar {
-			background-color: var(--elevation-one);
+			background-color: var(--neutral-one);
 			border-radius: 10rem;
 		}
 
 		// dont ask me why these have to be duplicated because idk either
 		&[value]::-webkit-progress-value {
-			background-color: var(--accent);
+			background-color: var(--yellow);
 			border-radius: 10rem;
 		}
 
 		&[value]::-moz-progress-bar {
-			background-color: var(--accent);
+			background-color: var(--yellow);
 			border-radius: 10rem;
 		}
 	}

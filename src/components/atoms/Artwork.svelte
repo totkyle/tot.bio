@@ -15,12 +15,6 @@
 			clicked = false;
 		}
 	}
-
-	function disableRightClick(event: { preventDefault: () => void }) {
-		if (commission) {
-			event.preventDefault();
-		}
-	}
 </script>
 
 <button
@@ -37,20 +31,20 @@
 
 <svelte:head>
 	{#if clicked}
-		<title>afn · {art}</title>
+		<title>tot · {art}</title>
 	{:else}
-		<title>afn</title>
+		<title>tot</title>
 	{/if}
 </svelte:head>
 
 {#if clicked === true}
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div
 		class="img-modal"
+		oncontextmenu={commission ? 'return false;' : ''}
 		tabindex="0"
 		on:click={() => (clicked = false)}
 		on:keypress={() => (clicked = false)}
-		on:contextmenu={disableRightClick}
-		role="button"
 		in:fly={{ y: 50, easing: quintOut, duration: 750 }}
 		out:fly={{ y: 50, easing: cubicOut, duration: 300 }}
 	>
@@ -69,7 +63,7 @@
 		width: 100%;
 		border-radius: 4px;
 		overflow: hidden;
-		background: var(--elevation-one);
+		background: var(--neutral-one);
 		transition: all 0.3s var(--bezier-one);
 		cursor: pointer;
 		font-size: 0;
@@ -78,9 +72,7 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		-webkit-transform: translate3d(0, 0, 1px);
-		transform: translate3d(0, 0, 1px);
 		-webkit-backface-visibility: hidden;
-		backface-visibility: hidden;
 
 		&:hover {
 			transform: translateY(-1px);
@@ -108,7 +100,7 @@
 		z-index: 20;
 		cursor: pointer;
 		user-select: none;
-		background-color: var(--elevation-six);
+		background-color: #0a0808bb;
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
 
@@ -136,7 +128,7 @@
 	h3 {
 		font-size: 3.5vh;
 		font-weight: 500;
-		color: var(--text-primary);
+		color: var(--white);
 	}
 
 	.tall {

@@ -7,17 +7,14 @@
 <footer class="wrapper">
 	<Socials />
 	<h6>
-		Made with pain. &#60;3
-		<Tooltip tip="you're here"><span>V2</span></Tooltip>
-		<Tooltip tip="how to delete">
-			<a href="https://v1.afn.im/" target="_blank" rel="noreferrer">V1</a>
-		</Tooltip>
+		Made with low effort.
+		<Tooltip tip="you're here"><span>V1</span></Tooltip>
 	</h6>
 </footer>
 
 <style lang="scss">
 	hr {
-		background-color: var(--elevation-one);
+		background-color: var(--neutral-one);
 		height: 1px;
 		border: 0;
 		width: 100%;
@@ -47,7 +44,7 @@
 
 	span {
 		font-family: var(--font-two);
-		background-color: var(--elevation-one);
+		background-color: var(--neutral-one);
 		border-radius: 7px;
 		padding: 0.15rem 0.5rem 0.15rem;
 		width: fit-content;
@@ -59,15 +56,15 @@
 		transition: 0.3s var(--bezier-one);
 		font-family: var(--font-two);
 		text-decoration: none;
-		color: var(--text-secondary);
+		color: var(--white-two);
 		font-size: 0.9rem;
 		border-radius: 7px;
 		padding: 0.15rem 0.5rem 0.15rem;
 
 		&:hover {
 			font-weight: 400;
-			background-color: var(--accent);
-			color: var(--elevation-one);
+			background-color: var(--yellow);
+			color: var(--neutral-one);
 			border-radius: 7px;
 			width: fit-content;
 		}
