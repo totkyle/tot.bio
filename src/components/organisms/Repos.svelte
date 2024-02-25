@@ -5,7 +5,7 @@
 	let repos: Repo[];
 
 	onMount(async () => {
-		const response = await fetch('https://gh-pinned-repos.egoist.dev/?username=totkyle');
+		const response = await fetch('https://github-pinned-repositories.vercel.app/totkyle');
 		repos = await response.json();
 	});
 </script>
